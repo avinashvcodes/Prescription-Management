@@ -1,0 +1,4 @@
+{
+    "error":"Internal server error",
+    "errorMessage":"$input.path('$.errorMessage')"
+}

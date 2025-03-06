@@ -1,0 +1,40 @@
+# Terraform files
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.backup
+.terraform.*
+
+__pycache__
+
+# Terraform plan files
+*.tfplan
+
+# Crash logs
+crash.log
+
+# .terraform directory, which contains plugins and modules
+.terraform/
+
+# AWS credentials and other sensitive files
+*.pem
+*.key
+*.crt
+
+# IDE/editor-specific files
+.vscode/
+.idea/
+
+# Operating system-specific files
+.DS_Store
+Thumbs.db
+
+# Terraform override files (locally generated)
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Include the following to exclude sensitive files from state files:
+# Example, if using environment variable files:
+*.env

@@ -1,0 +1,62 @@
+module "authorizer" {
+  source = "terraform-aws-modules/lambda/aws"
+  create_function = false
+  source_path = [
+    {
+      path = "../src/python/lambda_authorizer"
+      prefix_in_zip = "lambda_authorizer"
+    },
+    {
+      path = "../src/python/service"
+      prefix_in_zip = "service"
+      patterns = ["!../src/python/service/__pycache__"] 
+      
+    },
+    {
+      path = "../src/python/models"
+      prefix_in_zip = "models"
+      patterns = ["!../src/python/models/__pycache__"] 
+    }
+    ]
+  artifacts_dir = "academy2022/lambda_function_authorizer_avinash"
+  store_on_s3 = true
+  s3_bucket = "academy-terraform-lambda-source-code-v2"
+  tags = {
+      owner = "Avinash"
+    }
+}
+
+resource "aws_lambda_function" "authorizer_lambda_function" {
+  function_name = "lambda_function_authorizer_avinash"
+  s3_bucket = module.authorizer.s3_object.bucket
+  s3_key = module.authorizer.s3_object.key
+  s3_object_version = module.authorizer.s3_object.version_id
+  handler = "lambda_authorizer.lambda_authorizer_avinash.authorize"
+  runtime = "python3.9"
+  role = data.aws_iam_role.academy_lambda_access.arn
+  depends_on = [
+    module.authorizer
+  ]
+  layers = [module.lambda_layer.this_lambda_layer_arn]
+  timeout = 60
+  memory_size = 128
+  environment {
+    variables = var.environment_variables
+  }
+  vpc_config {
+    subnet_ids         = var.vpc_subnet_ids
+    security_group_ids = [var.security_group_id]
+  }
+  tags = var.lambda_tags
+}
+
+resource "aws_lambda_permission" "authorizer_lambda_function_permission" {
+  action = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.authorizer_lambda_function.function_name
+  principal = "apigateway.amazonaws.com"
+  statement_id = "AllowAPIInvoke"
+  source_arn = "${var.rest_api_execution_arn}/authorizers/${var.authorizer_id}"
+  /* For Authorizer to call the lambda function we provide permission for the authorizer */
+  /* source arn for lambda authorizer should be authorizers/authorizerId */
+}
+
