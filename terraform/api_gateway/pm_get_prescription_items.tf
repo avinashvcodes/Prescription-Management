@@ -1,5 +1,5 @@
 resource "aws_api_gateway_resource" "get_prescription_items" {
-  rest_api_id = aws_api_gateway_rest_api.rest_api_pharmacy_management_avinash.id
+  rest_api_id = aws_api_gateway_rest_api.rest_api_pharmacy_management.id
   parent_id = aws_api_gateway_resource.pharmacy.id
   path_part = "get-prescription-items"
   depends_on = [
@@ -8,7 +8,7 @@ resource "aws_api_gateway_resource" "get_prescription_items" {
 }
 
 resource "aws_api_gateway_method" "get_prescription_items" {
-  rest_api_id = aws_api_gateway_rest_api.rest_api_pharmacy_management_avinash.id
+  rest_api_id = aws_api_gateway_rest_api.rest_api_pharmacy_management.id
   resource_id = aws_api_gateway_resource.get_prescription_items.id
   http_method = "GET"
   authorization = "CUSTOM"
@@ -25,7 +25,7 @@ resource "aws_api_gateway_method" "get_prescription_items" {
 }
 
 resource "aws_api_gateway_integration" "get_prescription_items_integration" {
-  rest_api_id = aws_api_gateway_rest_api.rest_api_pharmacy_management_avinash.id
+  rest_api_id = aws_api_gateway_rest_api.rest_api_pharmacy_management.id
   resource_id = aws_api_gateway_resource.get_prescription_items.id
   http_method = aws_api_gateway_method.get_prescription_items.http_method
   integration_http_method = "POST"
@@ -45,7 +45,7 @@ resource "aws_api_gateway_integration" "get_prescription_items_integration" {
 }
 
 resource "aws_api_gateway_method_response" "get_prescription_items_response_200" {
-  rest_api_id = aws_api_gateway_rest_api.rest_api_pharmacy_management_avinash.id
+  rest_api_id = aws_api_gateway_rest_api.rest_api_pharmacy_management.id
   resource_id = aws_api_gateway_resource.get_prescription_items.id
   http_method = aws_api_gateway_method.get_prescription_items.http_method
   status_code = "200"
@@ -55,7 +55,7 @@ resource "aws_api_gateway_method_response" "get_prescription_items_response_200"
 }
 
 resource "aws_api_gateway_integration_response" "get_prescription_items_response_200i" {
-  rest_api_id = aws_api_gateway_rest_api.rest_api_pharmacy_management_avinash.id
+  rest_api_id = aws_api_gateway_rest_api.rest_api_pharmacy_management.id
   resource_id = aws_api_gateway_resource.get_prescription_items.id
   http_method = aws_api_gateway_method.get_prescription_items.http_method
   status_code = aws_api_gateway_method_response.get_prescription_items_response_200.status_code
@@ -65,7 +65,7 @@ resource "aws_api_gateway_integration_response" "get_prescription_items_response
 }
 
 resource "aws_api_gateway_method_response" "get_prescription_items_response_400" {
-  rest_api_id = aws_api_gateway_rest_api.rest_api_pharmacy_management_avinash.id
+  rest_api_id = aws_api_gateway_rest_api.rest_api_pharmacy_management.id
   resource_id = aws_api_gateway_resource.get_prescription_items.id
   http_method = aws_api_gateway_method.get_prescription_items.http_method
   status_code = "400"
@@ -76,7 +76,7 @@ resource "aws_api_gateway_method_response" "get_prescription_items_response_400"
 }
 
 resource "aws_api_gateway_integration_response" "get_prescription_items_response_400i" {
-  rest_api_id = aws_api_gateway_rest_api.rest_api_pharmacy_management_avinash.id
+  rest_api_id = aws_api_gateway_rest_api.rest_api_pharmacy_management.id
   resource_id = aws_api_gateway_resource.get_prescription_items.id
   http_method = aws_api_gateway_method.get_prescription_items.http_method
   status_code = aws_api_gateway_method_response.get_prescription_items_response_400.status_code
@@ -90,7 +90,7 @@ resource "aws_api_gateway_integration_response" "get_prescription_items_response
 }
 
 resource "aws_api_gateway_method_response" "get_prescription_items_response_404" {
-  rest_api_id = aws_api_gateway_rest_api.rest_api_pharmacy_management_avinash.id
+  rest_api_id = aws_api_gateway_rest_api.rest_api_pharmacy_management.id
   resource_id = aws_api_gateway_resource.get_prescription_items.id
   http_method = aws_api_gateway_method.get_prescription_items.http_method
   status_code = "404"
@@ -101,7 +101,7 @@ resource "aws_api_gateway_method_response" "get_prescription_items_response_404"
 }
 
 resource "aws_api_gateway_integration_response" "get_prescription_items_response_404i" {
-  rest_api_id = aws_api_gateway_rest_api.rest_api_pharmacy_management_avinash.id
+  rest_api_id = aws_api_gateway_rest_api.rest_api_pharmacy_management.id
   resource_id = aws_api_gateway_resource.get_prescription_items.id
   http_method = aws_api_gateway_method.get_prescription_items.http_method
   status_code = aws_api_gateway_method_response.get_prescription_items_response_404.status_code
@@ -115,7 +115,7 @@ resource "aws_api_gateway_integration_response" "get_prescription_items_response
 }
 
 resource "aws_api_gateway_method_response" "get_prescription_items_response_500" {
-  rest_api_id = aws_api_gateway_rest_api.rest_api_pharmacy_management_avinash.id
+  rest_api_id = aws_api_gateway_rest_api.rest_api_pharmacy_management.id
   resource_id = aws_api_gateway_resource.get_prescription_items.id
   http_method = aws_api_gateway_method.get_prescription_items.http_method
   status_code = "500"
@@ -126,7 +126,7 @@ resource "aws_api_gateway_method_response" "get_prescription_items_response_500"
 }
 
 resource "aws_api_gateway_integration_response" "get_prescription_items_response_500i" {
-  rest_api_id = aws_api_gateway_rest_api.rest_api_pharmacy_management_avinash.id
+  rest_api_id = aws_api_gateway_rest_api.rest_api_pharmacy_management.id
   resource_id = aws_api_gateway_resource.get_prescription_items.id
   http_method = aws_api_gateway_method.get_prescription_items.http_method
   status_code = aws_api_gateway_method_response.get_prescription_items_response_500.status_code

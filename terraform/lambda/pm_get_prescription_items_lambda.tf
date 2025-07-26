@@ -24,7 +24,7 @@ module "get-prescription-items" {
     }
     ]
     /* All path except Module path should be relative to the .terraform folder or where the terraform runs */
-    artifacts_dir = "academy2022/lambda_function_get_prescription_items_avinash"
+    artifacts_dir = "academy2022/lambda_function_get_prescription_items"
     store_on_s3 = true
     s3_bucket = "academy-terraform-lambda-source-code-v2"
     tags = {
@@ -33,13 +33,13 @@ module "get-prescription-items" {
 }
 
 resource "aws_lambda_function" "get_prescription_items_lambda_function" {
-    function_name = "lambda_function_get_prescription_items_avinash"
+    function_name = "lambda_function_get_prescription_items"
     s3_bucket = module.get-prescription-items.s3_object.bucket
     s3_key = module.get-prescription-items.s3_object.key
     s3_object_version = module.get-prescription-items.s3_object.version_id
     role = data.aws_iam_role.academy_lambda_access.arn
     runtime = "python3.9"
-    handler = "get_prescription_items.lambda_get_prescription_items_avinash.get_prescription_items"
+    handler = "get_prescription_items.lambda_get_prescription_items.get_prescription_items"
     layers = [module.lambda_layer.this_lambda_layer_arn]
     timeout = 60
     memory_size = 128

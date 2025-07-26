@@ -1,7 +1,7 @@
 """
 # @Python program
 # @Name: main.py
-# @Lambda name: lambda_function_get_prescription_items_avinash
+# @Lambda name: lambda_function_get_prescription_items
 # @Since: December 2022
 # @Author: Avinash
 # @Version: 1.0
@@ -14,7 +14,7 @@ from sqlalchemy import and_
 from uuid import UUID
 from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.exc import SQLAlchemyError
-from common.bad_request import BadRequest
+from common.exceptions import BadRequest
 
 result = {}
 conn = Connect()

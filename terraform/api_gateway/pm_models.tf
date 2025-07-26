@@ -1,5 +1,5 @@
 resource "aws_api_gateway_model" "prescription_model" {
-  rest_api_id  = aws_api_gateway_rest_api.rest_api_pharmacy_management_avinash.id
+  rest_api_id  = aws_api_gateway_rest_api.rest_api_pharmacy_management.id
   name         = "prescription"
   content_type = "application/json"
 
@@ -58,7 +58,7 @@ EOF
 }
 
 resource "aws_api_gateway_model" "update_prescription_model" {
-  rest_api_id  = aws_api_gateway_rest_api.rest_api_pharmacy_management_avinash.id
+  rest_api_id  = aws_api_gateway_rest_api.rest_api_pharmacy_management.id
   name         = "updatePrescription"
   content_type = "application/json"
 
@@ -121,7 +121,7 @@ EOF
 }
 
 resource "aws_api_gateway_model" "prescription_items_model" {
-  rest_api_id  = aws_api_gateway_rest_api.rest_api_pharmacy_management_avinash.id
+  rest_api_id  = aws_api_gateway_rest_api.rest_api_pharmacy_management.id
   name         = "prescriptionItems"
   content_type = "application/json"
 
@@ -157,7 +157,7 @@ EOF
 }
 
 resource "aws_api_gateway_model" "update_prescription_items_model" {
-  rest_api_id  = aws_api_gateway_rest_api.rest_api_pharmacy_management_avinash.id
+  rest_api_id  = aws_api_gateway_rest_api.rest_api_pharmacy_management.id
   name         = "updatePrescriptionItems"
   content_type = "application/json"
 

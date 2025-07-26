@@ -18,7 +18,7 @@ module "authorizer" {
       patterns = ["!../src/python/models/__pycache__"] 
     }
     ]
-  artifacts_dir = "academy2022/lambda_function_authorizer_avinash"
+  artifacts_dir = "academy2022/lambda_function_authorizer"
   store_on_s3 = true
   s3_bucket = "academy-terraform-lambda-source-code-v2"
   tags = {
@@ -27,11 +27,11 @@ module "authorizer" {
 }
 
 resource "aws_lambda_function" "authorizer_lambda_function" {
-  function_name = "lambda_function_authorizer_avinash"
+  function_name = "lambda_function_authorizer"
   s3_bucket = module.authorizer.s3_object.bucket
   s3_key = module.authorizer.s3_object.key
   s3_object_version = module.authorizer.s3_object.version_id
-  handler = "lambda_authorizer.lambda_authorizer_avinash.authorize"
+  handler = "lambda_authorizer.lambda_authorizer.authorize"
   runtime = "python3.9"
   role = data.aws_iam_role.academy_lambda_access.arn
   depends_on = [

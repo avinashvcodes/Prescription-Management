@@ -20,7 +20,7 @@ module "prescription" {
       patterns = ["!../src/python/service/__pycache__"]
     }
     ]
-  artifacts_dir = "academy2022/lambda_function_prescription_avinash"
+  artifacts_dir = "academy2022/lambda_function_prescription"
   store_on_s3 = true
   s3_bucket = "academy-terraform-lambda-source-code-v2"
   tags = {
@@ -29,11 +29,11 @@ module "prescription" {
 }
 
 resource "aws_lambda_function" "prescription_lambda_function" {
-  function_name = "lambda_function_prescription_avinash"
+  function_name = "lambda_function_prescription"
   s3_bucket = module.prescription.s3_object.bucket
   s3_key = module.prescription.s3_object.key
   s3_object_version = module.prescription.s3_object.version_id
-  handler = "prescription.lambda_post_prescription_avinash.post_prescription"
+  handler = "prescription.lambda_post_prescription.post_prescription"
   runtime = "python3.9"
   timeout = 60
   memory_size = 128

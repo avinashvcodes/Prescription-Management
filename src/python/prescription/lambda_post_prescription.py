@@ -1,7 +1,7 @@
 """
 # @Python program
 # @Name: main.py
-# @Lambda name: lambda_function_post_prescription_avinash
+# @Lambda name: lambda_function_post_prescription
 # @Since: December 2022
 # @Author: Avinash
 # @Version: 1.0
@@ -11,7 +11,7 @@
 from models import Prescriptions
 from service.db_init import Connect
 from sqlalchemy.exc import SQLAlchemyError
-from common.bad_request import BadRequest
+from common.exceptions import BadRequest
 from common.validation import validate_uuid, validate_date
 
 conn = Connect()

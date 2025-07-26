@@ -1,7 +1,7 @@
 """
 # @Python program
 # @Name: main.py
-# @Lambda name: lambda_function_update_prescription_avinash
+# @Lambda name: lambda_function_update_prescription
 # @Since: December 2022
 # @Author: Avinash
 # @Version: 1.0
@@ -12,7 +12,7 @@ from service.db_init import Connect
 from models import Prescriptions
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm.exc import NoResultFound
-from common.bad_request import BadRequest
+from common.exceptions import BadRequest
 from common.validation import validate_uuid, validate_date
 
 conn = Connect()

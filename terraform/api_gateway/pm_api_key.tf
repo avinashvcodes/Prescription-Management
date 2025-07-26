@@ -1,15 +1,15 @@
 resource "aws_api_gateway_api_key" "api_key" {
-    name = "api_key_pharmacy_management_avinash"
+    name = "api_key_pharmacy_management"
     tags = {
       owner = "Avinash"
     }
 }
 
 resource "aws_api_gateway_usage_plan" "usage_plan" {
-  name = "usage_plan_pharmacy_management_avinash"
+  name = "usage_plan_pharmacy_management"
 
   api_stages {
-    api_id = aws_api_gateway_rest_api.rest_api_pharmacy_management_avinash.id
+    api_id = aws_api_gateway_rest_api.rest_api_pharmacy_management.id
     stage  = aws_api_gateway_deployment.dev.stage_name
   }
   depends_on = [

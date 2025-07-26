@@ -22,7 +22,7 @@ module "update_prescription_items" {
       patterns = ["!../src/python/service/__pycache__"]
     }
       ]
-    artifacts_dir = "academy2022/lambda_function_update_prescription_items_avinash"
+    artifacts_dir = "academy2022/lambda_function_update_prescription_items"
     store_on_s3 = true
     s3_bucket = "academy-terraform-lambda-source-code-v2"
     tags = {
@@ -31,13 +31,13 @@ module "update_prescription_items" {
 }
 
 resource "aws_lambda_function" "update_prescription_items_lambda_function" {
-    function_name = "lambda_function_update_prescription_items_avinash"
+    function_name = "lambda_function_update_prescription_items"
     s3_bucket = module.update_prescription_items.s3_object.bucket
     s3_key = module.update_prescription_items.s3_object.key
     s3_object_version = module.update_prescription_items.s3_object.version_id
     role = data.aws_iam_role.academy_lambda_access.arn
     runtime = "python3.9"
-    handler = "update_prescription_items.lambda_update_prescription_items_avinash.update_prescription_items"
+    handler = "update_prescription_items.lambda_update_prescription_items.update_prescription_items"
     layers = [module.lambda_layer.this_lambda_layer_arn]
     depends_on = [
         module.update_prescription_items
