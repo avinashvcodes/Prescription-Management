@@ -2,6 +2,7 @@ import os
 
 from .jwt_authorization import CognitoJWTAuthorizer
 from .lambda_authorizer import APIGatewayLambdaAuthorizer
+from .rbac_manager import RBACManager
 from .utils import generate_policy
 
 client_id = os.environ["CLIENT_ID"]
@@ -25,7 +26,9 @@ def lambda_handler(event, context):
             return generate_policy("deny", method_arn)
 
         jwt_authorizer = CognitoJWTAuthorizer(jwt_token, COGNITO_USER_POOL_URL, client_id)
-        authorizer = APIGatewayLambdaAuthorizer(method_arn, jwt_authorizer)
+        rbac_manager = RBACManager()
+
+        authorizer = APIGatewayLambdaAuthorizer(method_arn, jwt_authorizer, rbac_manager)
 
         if authorizer.authorize():
             return generate_policy("allow", method_arn)
